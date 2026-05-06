@@ -1,4 +1,5 @@
 import java.util.*;
+import java.io.*;
 
 public class CurriculumApp {
     private static List<Course> allCourses = new ArrayList<>();
@@ -7,6 +8,7 @@ public class CurriculumApp {
     private static final String CSV_FILE = "BSCSBSIT2018.csv";
     private static final String UPDATED_FILE = "BSCSBSIT2018_updated.csv";
     private static Scanner scanner = new Scanner(System.in);
+    private static BufferedReader keyboardReader = new BufferedReader(new InputStreamReader(System.in));
 
     public static void main(String[] args) {
         curriculumManager = new CurriculumManager<>(CSV_FILE);
@@ -63,56 +65,88 @@ public class CurriculumApp {
         String program = selectProgram();
         if (program == null) return;
 
-        System.out.println("\n===========================================");
-        System.out.println("SUBJECTS FOR EACH SCHOOL TERM - " +
-                (program.equals("BSIT") ? "BS INFORMATION TECHNOLOGY" : "BS COMPUTER SCIENCE"));
-        System.out.println("===========================================");
-
-        // Get courses for selected program
         List<Course> programCourses = curriculumManager.getCoursesByProgram(program);
 
-        // Group by year and semester
         Map<Integer, Map<Integer, List<Course>>> yearSemGroups = new TreeMap<>();
         for (Course course : programCourses) {
             yearSemGroups.computeIfAbsent(course.getYearLevel(), k -> new TreeMap<>())
-                    .computeIfAbsent(course.getSemester(), k -> new ArrayList<>())
+                    .computeIfAbsent(course.getSemesterOrder(), k -> new ArrayList<>())
                     .add(course);
         }
 
-        for (Map.Entry<Integer, Map<Integer, List<Course>>> yearEntry : yearSemGroups.entrySet()) {
-            int year = yearEntry.getKey();
+        System.out.println("\nSelect Year Level:");
+        for (int year : yearSemGroups.keySet()) {
+            System.out.println(year + ". Year " + year);
+        }
+        System.out.println("0. Return to Main Menu");
 
-            for (Map.Entry<Integer, List<Course>> semEntry : yearEntry.getValue().entrySet()) {
-                int semester = semEntry.getKey();
-                List<Course> courses = semEntry.getValue();
-                Collections.sort(courses);
+        int yearChoice = getIntInput("Enter your choice: ");
 
-                String semName = courses.get(0).getSemesterName();
+        if (yearChoice == 0) {
+            return;
+        }
 
-                System.out.println("\nYear " + year + " - " + semName);
-                System.out.println("----------------------------------------------------------------------------------------");
-                System.out.printf("%-12s %-45s %-6s %-15s\n",
-                        "Course Code", "Course Title", "Units", "Pre-requisite");
-                System.out.println("----------------------------------------------------------------------------------------");
+        if (!yearSemGroups.containsKey(yearChoice)) {
+            System.out.println("Invalid year level! Returning to main menu.");
+            return;
+        }
 
-                for (Course course : courses) {
-                    String prerequisite = course.getPrerequisite().isEmpty() ? "None" : course.getPrerequisite();
-                    System.out.printf("%-12s %-45s %-6.1f %-15s\n",
-                            course.getCourseCode(),
-                            course.getCourseTitle(),
-                            course.getUnits(),
-                            prerequisite);
+        Map<Integer, List<Course>> selectedYear = yearSemGroups.get(yearChoice);
+        List<Integer> semesters = new ArrayList<>(selectedYear.keySet());
+        Collections.sort(semesters);
+
+        for (int i = 0; i < semesters.size(); i++) {
+            int semesterOrder = semesters.get(i);
+            List<Course> courses = selectedYear.get(semesterOrder);
+            Collections.sort(courses);
+
+            String semName = courses.get(0).getSemester();
+
+            System.out.println("\n===========================================");
+            System.out.println("Year " + yearChoice + " - " + semName + " - " +
+                    (program.equals("BSIT") ? "BS INFORMATION TECHNOLOGY" : "BS COMPUTER SCIENCE"));
+            System.out.println("===========================================");
+            System.out.println("-------------------------------------------------------------------------");
+            System.out.printf("%-12s  %-40s  %5s  %-10s\n",
+                    "Course Code", "Course Title", "Units", "Pre-req");
+            System.out.println("-------------------------------------------------------------------------");
+
+            for (Course course : courses) {
+                String prerequisite = course.getPrerequisite().isEmpty() ? "None" : course.getPrerequisite();
+                if (prerequisite.length() > 10) {
+                    prerequisite = prerequisite.substring(0, 7) + "...";
                 }
-
-                System.out.println("----------------------------------------------------------------------------------------");
-
-                // Prompt user
-                System.out.print("\n[Enter 0 to return to menu, any other key to continue]: ");
-                String input = scanner.nextLine().trim();
-                if (input.equals("0")) {
-                    return;
+                String courseTitle = course.getCourseTitle();
+                if (courseTitle.length() > 40) {
+                    courseTitle = courseTitle.substring(0, 37) + "...";
                 }
+                System.out.printf("%-12s  %-40s  %5.1f  %-10s\n",
+                        course.getCourseCode(),
+                        courseTitle,
+                        course.getUnits(),
+                        prerequisite);
             }
+
+            System.out.println("-------------------------------------------------------------------------");
+            System.out.println("Total Courses: " + courses.size() + " | Total Units: " +
+                    String.format("%.1f", courses.stream().mapToDouble(Course::getUnits).sum()));
+
+            // Navigation prompt
+            if (i < semesters.size() - 1) {
+                System.out.print("\nPress ENTER for next semester or type 0 to return to menu: ");
+            } else {
+                System.out.print("\nPress ENTER to return to menu: ");
+            }
+
+            // Read the FULL line input
+            String input = scanner.nextLine();
+            // Remove any whitespace and newline
+            input = input.trim();
+
+            if (input.equals("0")) {
+                return;
+            }
+            // If input is empty (just ENTER pressed), the loop continues to next semester
         }
     }
 
@@ -120,63 +154,91 @@ public class CurriculumApp {
         String program = selectProgram();
         if (program == null) return;
 
-        System.out.println("\n===========================================");
-        System.out.println("SUBJECTS WITH GRADES - " +
-                (program.equals("BSIT") ? "BS INFORMATION TECHNOLOGY" : "BS COMPUTER SCIENCE"));
-        System.out.println("===========================================");
-
         List<Course> programCourses = curriculumManager.getCoursesByProgram(program);
 
         Map<Integer, Map<Integer, List<Course>>> yearSemGroups = new TreeMap<>();
         for (Course course : programCourses) {
             yearSemGroups.computeIfAbsent(course.getYearLevel(), k -> new TreeMap<>())
-                    .computeIfAbsent(course.getSemester(), k -> new ArrayList<>())
+                    .computeIfAbsent(course.getSemesterOrder(), k -> new ArrayList<>())
                     .add(course);
         }
 
-        for (Map.Entry<Integer, Map<Integer, List<Course>>> yearEntry : yearSemGroups.entrySet()) {
-            int year = yearEntry.getKey();
+        System.out.println("\nSelect Year Level:");
+        for (int year : yearSemGroups.keySet()) {
+            System.out.println(year + ". Year " + year);
+        }
+        System.out.println("0. Return to Main Menu");
 
-            for (Map.Entry<Integer, List<Course>> semEntry : yearEntry.getValue().entrySet()) {
-                int semester = semEntry.getKey();
-                List<Course> courses = semEntry.getValue();
-                Collections.sort(courses);
+        int yearChoice = getIntInput("Enter your choice: ");
 
-                String semName = courses.get(0).getSemesterName();
+        if (yearChoice == 0) {
+            return;
+        }
 
-                System.out.println("\nYear " + year + " - " + semName);
-                System.out.println("----------------------------------------------------------------------------------------------------");
-                System.out.printf("%-12s %-40s %-8s %-12s\n",
-                        "Course Code", "Course Title", "Grade", "Status");
-                System.out.println("----------------------------------------------------------------------------------------------------");
+        if (!yearSemGroups.containsKey(yearChoice)) {
+            System.out.println("Invalid year level! Returning to main menu.");
+            return;
+        }
 
-                for (Course course : courses) {
-                    String grade = course.getGrade();
-                    String status = determineStatus(grade);
+        Map<Integer, List<Course>> selectedYear = yearSemGroups.get(yearChoice);
+        List<Integer> semesters = new ArrayList<>(selectedYear.keySet());
+        Collections.sort(semesters);
 
-                    System.out.printf("%-12s %-40s %-8s %-12s\n",
-                            course.getCourseCode(),
-                            course.getCourseTitle(),
-                            grade,
-                            status);
+        for (int i = 0; i < semesters.size(); i++) {
+            int semesterOrder = semesters.get(i);
+            List<Course> courses = selectedYear.get(semesterOrder);
+            Collections.sort(courses);
+
+            String semName = courses.get(0).getSemester();
+
+            System.out.println("\n===========================================");
+            System.out.println("Year " + yearChoice + " - " + semName + " - " +
+                    (program.equals("BSIT") ? "BS INFORMATION TECHNOLOGY" : "BS COMPUTER SCIENCE"));
+            System.out.println("===========================================");
+            System.out.println("---------------------------------------------------------------------------------");
+            System.out.printf("%-12s  %-35s  %6s  %-10s\n",
+                    "Course Code", "Course Title", "Grade", "Status");
+            System.out.println("---------------------------------------------------------------------------------");
+
+            for (Course course : courses) {
+                String grade = course.getGrade();
+                String status = determineStatus(grade);
+
+                String courseTitle = course.getCourseTitle();
+                if (courseTitle.length() > 35) {
+                    courseTitle = courseTitle.substring(0, 32) + "...";
                 }
 
-                // Show summary for this semester
-                long passedCount = courses.stream().filter(c -> determineStatus(c.getGrade()).equals("PASSED")).count();
-                long failedCount = courses.stream().filter(c -> determineStatus(c.getGrade()).equals("FAILED")).count();
-                long naCount = courses.stream().filter(c -> c.getGrade().equals("Not yet taken")).count();
-
-                System.out.println("----------------------------------------------------------------------------------------------------");
-                System.out.printf("Summary: %d Total | %d Passed | %d Failed | %d N/A\n",
-                        courses.size(), passedCount, failedCount, naCount);
-
-                // Prompt user
-                System.out.print("\n[Enter 0 to return to menu, any other key to continue]: ");
-                String input = scanner.nextLine().trim();
-                if (input.equals("0")) {
-                    return;
-                }
+                System.out.printf("%-12s  %-35s  %6s  %-10s\n",
+                        course.getCourseCode(),
+                        courseTitle,
+                        grade,
+                        status);
             }
+
+            long passedCount = courses.stream().filter(c -> determineStatus(c.getGrade()).equals("PASSED")).count();
+            long failedCount = courses.stream().filter(c -> determineStatus(c.getGrade()).equals("FAILED")).count();
+            long naCount = courses.stream().filter(c -> c.getGrade().equals("Not yet taken")).count();
+
+            System.out.println("---------------------------------------------------------------------------------");
+            System.out.printf("Summary: %d Total | %d Passed | %d Failed | %d N/A\n",
+                    courses.size(), passedCount, failedCount, naCount);
+
+            // Navigation prompt
+            if (i < semesters.size() - 1) {
+                System.out.print("\nPress ENTER for next semester or type 0 to return to menu: ");
+            } else {
+                System.out.print("\nPress ENTER to return to menu: ");
+            }
+
+            // Read the FULL line input
+            String input = scanner.nextLine();
+            input = input.trim();
+
+            if (input.equals("0")) {
+                return;
+            }
+            // If input is empty (just ENTER pressed), the loop continues
         }
     }
 
@@ -240,11 +302,10 @@ public class CurriculumApp {
             return;
         }
 
-        // Group ungraded courses by year and semester
         Map<Integer, Map<Integer, List<Course>>> yearSemGroups = new TreeMap<>();
         for (Course course : programUngraded) {
             yearSemGroups.computeIfAbsent(course.getYearLevel(), k -> new TreeMap<>())
-                    .computeIfAbsent(course.getSemester(), k -> new ArrayList<>())
+                    .computeIfAbsent(course.getSemesterOrder(), k -> new ArrayList<>())
                     .add(course);
         }
 
@@ -258,14 +319,14 @@ public class CurriculumApp {
             int year = yearEntry.getKey();
 
             for (Map.Entry<Integer, List<Course>> semEntry : yearEntry.getValue().entrySet()) {
-                int semester = semEntry.getKey();
+                int semesterOrder = semEntry.getKey();
                 List<Course> courses = semEntry.getValue();
 
-                String semName = courses.get(0).getSemesterName();
+                String semName = courses.get(0).getSemester();
                 System.out.println("\nYear " + year + " - " + semName + ":");
 
                 for (Course course : courses) {
-                    System.out.printf("  [%3d] %-12s %-45s %5.1f units\n",
+                    System.out.printf("  [%3d] %-12s  %-40s  %5.1f units\n",
                             index,
                             course.getCourseCode(),
                             course.getCourseTitle(),
@@ -277,8 +338,7 @@ public class CurriculumApp {
         }
 
         while (true) {
-            System.out.print("\nEnter course number to grade (0 to finish): ");
-            int choice = getIntInput("");
+            int choice = getIntInput("\nEnter course number to grade (0 to finish): ");
 
             if (choice == 0) {
                 break;
@@ -295,8 +355,7 @@ public class CurriculumApp {
 
     private static void assignGradeToCourse(Course course) {
         System.out.println("\nSelected: " + course.getCourseCode() + " - " + course.getCourseTitle());
-        System.out.println("Enter grade (50-100 for numeric, INC for Incomplete, DRP for Dropped):");
-        System.out.print("Grade: ");
+        System.out.print("Enter grade (50-100 for numeric, INC for Incomplete, DRP for Dropped): ");
         String grade = scanner.nextLine().trim().toUpperCase();
 
         if (grade.equals("INC") || grade.equals("DRP")) {
@@ -341,7 +400,7 @@ public class CurriculumApp {
         System.out.println("Course Code   : " + course.getCourseCode());
         System.out.println("Program       : " + course.getCourse());
         System.out.println("Year Level    : " + course.getYearLevel());
-        System.out.println("Semester      : " + course.getSemesterName());
+        System.out.println("Semester      : " + course.getSemester());
         System.out.println("Course Title  : " + course.getCourseTitle());
         System.out.println("Units         : " + course.getUnits());
         System.out.println("Pre-requisite : " + (course.getPrerequisite().isEmpty() ? "None" : course.getPrerequisite()));
@@ -372,8 +431,7 @@ public class CurriculumApp {
                 break;
 
             case 2:
-                System.out.print("Enter new units: ");
-                double newUnits = getDoubleInput("");
+                double newUnits = getDoubleInput("Enter new units: ");
                 if (newUnits > 0) {
                     course.setUnits(newUnits);
                     System.out.println("Units updated successfully!");
@@ -430,18 +488,16 @@ public class CurriculumApp {
         }
     }
 
+    // INPUT HELPER METHODS
+
     private static int getIntInput(String prompt) {
         while (true) {
             try {
-                if (!prompt.isEmpty()) {
-                    System.out.print(prompt);
-                }
-                return Integer.parseInt(scanner.nextLine().trim());
+                System.out.print(prompt);
+                String line = scanner.nextLine();
+                return Integer.parseInt(line.trim());
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input! Please enter a valid number.");
-                if (!prompt.isEmpty()) {
-                    System.out.print(prompt);
-                }
             }
         }
     }
@@ -449,15 +505,11 @@ public class CurriculumApp {
     private static double getDoubleInput(String prompt) {
         while (true) {
             try {
-                if (!prompt.isEmpty()) {
-                    System.out.print(prompt);
-                }
-                return Double.parseDouble(scanner.nextLine().trim());
+                System.out.print(prompt);
+                String line = scanner.nextLine();
+                return Double.parseDouble(line.trim());
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input! Please enter a valid number.");
-                if (!prompt.isEmpty()) {
-                    System.out.print(prompt);
-                }
             }
         }
     }

@@ -1,152 +1,151 @@
-YearLevel,Course,CourseCode,CourseTitle,Units,Prerequisite,Grade
-1,BSIT,IT 111,Introduction to Computing,2,,86
-1,BSIT,IT 111L,Introduction to Computing (Lab),1,,86
-1,BSIT,IT 112,Computer Programming 1,2,,86
-1,BSIT,IT 112L,Computer Programming 1 (Lab),1,,86
-1,BSIT,IT 113,Discrete Mathematics,3,,97
-1,BSIT,GART,Art Appreciation,3,,96
-1,BSIT,GSELF,Understanding the Self,3,,94
-1,BSIT,GHIST,Readings in Philippine History,3,,90
-1,BSIT,FIT HW,Physical Activity Towards Health and Fitness (Health and Wellness),2,,93
-1,BSIT,CFE 101,God’s Journey with His People,3,,Not yet taken
-1,BSIT,IT 121,Information System Fundamentals,3,IT 111,Not yet taken
-1,BSIT,IT 122,Computer Programming 2,2,IT 112,Not yet taken
-1,BSIT,IT 122L,Computer Programming 2 (Lab),1,IT 112,Not yet taken
-1,BSIT,IT 123,Platform Technologies,2,IT 111,Not yet taken
-1,BSIT,IT 123L,Platform Technologies (Lab),1,IT 111,Not yet taken
-1,BSIT,GMATH,Mathematics in the Modern World,3,,Not yet taken
-1,BSIT,GPCOM,Purposive Communication,3,,Not yet taken
-1,BSIT,GCWORLD,The Contemporary World,3,,Not yet taken
-1,BSIT,FIT CS,Physical Activity Towards Health and Fitness (Combative Sports),2,,Not yet taken
-1,BSIT,CFE 102,Christian Morality in Our Times,3,,Not yet taken
-1,BSIT,IT 131,Computer Architecture,2,IT 112,Not yet taken
-1,BSIT,IT 131L,Computer Architecture (Lab),1,IT 112,Not yet taken
-1,BSIT,GRIZAL,The Life and Works of Rizal,3,,Not yet taken
-1,BSCS,CS 111,Introduction to Computing,2,,Not yet taken
-1,BSCS,CS 111L,Introduction to Computing (Lab),1,,Not yet taken
-1,BSCS,CS 112,Computer Programming 1,2,,Not yet taken
-1,BSCS,CS 112L,Computer Programming 1 (Lab),1,,Not yet taken
-1,BSCS,CS 113,Discrete Structures,3,,Not yet taken
-1,BSCS,GMAT,Mathematics in the Modern World,3,,Not yet taken
-1,BSCS,GART,Art Appreciation,3,,Not yet taken
-1,BSCS,GHIST,Readings in Philippine History,3,,Not yet taken
-1,BSCS,FIT HW,Physical Activity Towards Health and Fitness,2,,Not yet taken
-1,BSCS,CFE 101,God's Journey with His People,3,,Not yet taken
-1,BSCS,CS 121,Digital Logic Design,3,CS 111,Not yet taken
-1,BSCS,CS 122,Computer Programming 2,2,CS 112,Not yet taken
-1,BSCS,CS 122L,Computer Programming 2 (Lab),1,CS 112,Not yet taken
-1,BSCS,CS 123,Architecture and Organization,2,CS 112,Not yet taken
-1,BSCS,CS 123L,Architecture and Organization (Lab),1,CS 112,Not yet taken
-1,BSCS,GSELF,Understanding the Self,3,,Not yet taken
-1,BSCS,GPCOM,Purposive Communication,3,,Not yet taken
-1,BSCS,GENVI,Environmental Science,3,,Not yet taken
-1,BSCS,FIT CS,Physical Activity Towards Health and Fitness (Combative Sports),2,,Not yet taken
-1,BSCS,CFE 102,Christian Morality in Our Times,3,,Not yet taken
-1,BSCS,CS 131,Software Modeling and Analysis,3,CS 111,Not yet taken
-1,BSCS,CS 132,Mathematics for Computer Science,3,,Not yet taken
-2,BSIT,IT 211,Requirements Analysis and Modeling,3,IT 121,Not yet taken
-2,BSIT,IT 212,Data Structures,2,"IT 113, IT 122",Not yet taken
-2,BSIT,IT 212L,Data Structures (Lab),1,"IT 113, IT 122",Not yet taken
-2,BSIT,IT 213,Network Fundamentals,2,"IT 131, IT 123",Not yet taken
-2,BSIT,IT 213L,Network Fundamentals (Lab),1,"IT 131, IT 123",Not yet taken
-2,BSIT,GSTS,Science Technology and Society,3,,Not yet taken
-2,BSIT,GENTREP,The Entrepreneurial Mind,3,,Not yet taken
-2,BSIT,GRVA,Reading Visual Art,3,,Not yet taken
-2,BSIT,NSTP-CWTS 1,Foundations of Service,3,,Not yet taken
-2,BSIT,FIT OA,Physical Activity Towards Health and Fitness (Outdoor and Adventure Activities),2,,Not yet taken
-2,BSIT,CFE 103,Catholic Foundation of Mission,3,,Not yet taken
-2,BSIT,IT 221,Information Management,2,IT 212,Not yet taken
-2,BSIT,IT 221L,Information Management (Lab),1,IT 212,Not yet taken
-2,BSIT,IT 222,Integrative Technologies,2,IT 122,Not yet taken
-2,BSIT,IT 222L,Integrative Technologies (Lab),1,IT 122,Not yet taken
-2,BSIT,IT 223,Human Computer Interaction,3,IT 122,Not yet taken
-2,BSIT,GENVI,Environmental Science,3,,Not yet taken
-2,BSIT,NSTP-CWTS 2,Social Awareness and Empowerment for Service,3,NSTP-CWTS 1,Not yet taken
-2,BSIT,FIT AQ,Physical Activity Towards Health and Fitness (Aquatics),2,,Not yet taken
-2,BSIT,CFE 104,CICM Missionary Identity,3,CFE 103,Not yet taken
-2,BSIT,CS 314,Social and Personal Development in the ICT Workplace,3,"CS 111, GSELF",Not yet taken
-2,BSIT,CS 315,Technology-Assisted Presentation and Presentation,3,"CS 111, GPCOM",Not yet taken
-2,BSIT,GETHICS,Ethics,3,,Not yet taken
-2,BSCS,CS 211,Data Structures,2,"CS 112, CS 113",Not yet taken
-2,BSCS,CS 211L,Data Structures (Lab),1,"CS 112, CS 113",Not yet taken
-2,BSCS,CS 212,Operating Systems,2,CS 123,Not yet taken
-2,BSCS,CS 212L,Operating Systems (Lab),1,CS 123,Not yet taken
-2,BSCS,CS 213,Human Computer Interaction,3,CS 122,Not yet taken
-2,BSCS,GSTS,Science Technology and Society,3,,Not yet taken
-2,BSCS,GRVA,Reading Visual Art,3,,Not yet taken
-2,BSCS,NSTP-CWTS 1,Foundations of Service,3,,Not yet taken
-2,BSCS,FIT OA,Physical Activity Towards Health and Fitness (Outdoor and Adventure Activities),2,,Not yet taken
-2,BSCS,CFE 103,Catholic Foundation of Mission,3,,Not yet taken
-2,BSCS,CS 221,Information Management,2,CS 211,Not yet taken
-2,BSCS,CS 221L,Information Management (Lab),1,CS 211,Not yet taken
-2,BSCS,CS 222,Computer Programming 3,2,CS 122,Not yet taken
-2,BSCS,CS 222L,Computer Programming 3 (Lab),1,CS 122,Not yet taken
-2,BSCS,CS 223,Automata and Formal Languages,3,CS 132,Not yet taken
-2,BSCS,GETHICS,Ethics,3,,Not yet taken
-2,BSCS,GCWORLD,The Contemporary World,3,,Not yet taken
-2,BSCS,NSTP-CWTS 2,Social Awareness and Empowerment for Service,3,NSTP-CWTS 1,Not yet taken
-2,BSCS,FIT AQ,Physical Activity Towards Health and Fitness (Aquatics),2,,Not yet taken
-2,BSCS,CFE 104,CICM Missionary Identity,3,CFE 103,Not yet taken
-2,BSCS,CS 231,Computer Networks,2,CS 212,Not yet taken
-2,BSCS,CS 231L,Computer Networks (Lab),1,CS 212,Not yet taken
-2,BSCS,GRIZAL,The Life and Works of Rizal,3,,Not yet taken
-2,BSCS,GENTREP,The Entrepreneurial Mind,3,,Not yet taken
-3,BSIT,IT 311,Applications Development,2,IT 122,Not yet taken
-3,BSIT,IT 311L,Applications Development (Lab),1,IT 122,Not yet taken
-3,BSIT,IT 312,Web Technologies,2,IT 212,Not yet taken
-3,BSIT,IT 312L,Web Technologies (Lab),1,IT 212,Not yet taken
-3,BSIT,IT 313,Software Engineering,3,"IT 211, IT 221",Not yet taken
-3,BSIT,IT 314,Social and Professional Issues in Information Technology,3,"GETHICS, IT 231",Not yet taken
-3,BSIT,IT 315,Technopreneurship,3,"GENTREP, IT 211",Not yet taken
-3,BSIT,ITE,Elective 1,3,3rd year standing,Not yet taken
-3,BSIT,CFE 105A,"CICM in Action: Justice, Peace, and Integrity of Creation, Indigenous Peoples, and Interreligious Dialogue",1.5,"CFE 103, CFE 104",Not yet taken
-3,BSIT,IT 321,IT Project 1,3,3rd year standing,Not yet taken
-3,BSIT,IT 322,Data Analytics,2,IT 221,Not yet taken
-3,BSIT,IT 322L,Data Analytics (Lab),1,IT 221,Not yet taken
-3,BSIT,IT 323,System Administration and Maintenance,2,IT 213,Not yet taken
-3,BSIT,IT 323L,System Administration and Maintenance (Lab),1,IT 213,Not yet taken
-3,BSIT,IT 324,System Integration and Architecture,3,"IT 211, IT 222",Not yet taken
-3,BSIT,IT 325,Field Trips and Seminars,3,3rd year standing,Not yet taken
-3,BSIT,ITE,Elective 2,3,3rd year standing,Not yet taken
-3,BSIT,CFE 105B,"CICM in Action: Environmental Planning and Management and Disaster Risk Reduction Management",1.5,CFE 105A,Not yet taken
-3,BSIT,IT 331,Information Assurance and Security,3,core courses,Not yet taken
-3,BSIT,ITE,Elective 3,3,3rd year standing,Not yet taken
-3,BSCS,CS 311,Applications Development,2,CS 122,Not yet taken
-3,BSCS,CS 311L,Applications Development (Lab),1,CS 122,Not yet taken
-3,BSCS,CS 312,Web Systems Development,2,CS 211,Not yet taken
-3,BSCS,CS 312L,Web Systems Development (Lab),1,CS 211,Not yet taken
-3,BSCS,CS 313,Software Engineering,3,"CS 131, CS 221",Not yet taken
-3,BSCS,CS 314,Social and Personal Development in the ICT Workplace,3,"CS 111, GSELF",Not yet taken
-3,BSCS,CS 315,Technology-Assisted Presentation and Presentation,3,"CS 111, GPCOM",Not yet taken
-3,BSCS,CSM 316,Numerical Methods for Computer Science,3,CS 132,Not yet taken
-3,BSCS,CFE 105A,"CICM in Action: Justice, Peace, and Integrity of Creation, Indigenous Peoples, and Interreligious Dialogue",1.5,"CFE 103, CFE 104",Not yet taken
-3,BSCS,CS 321,Artificial Intelligence,3,"CS 132, CS 211",Not yet taken
-3,BSCS,CS 322,Data Science,2,CS 221,Not yet taken
-3,BSCS,CS 322L,Data Science (Lab),1,CS 221,Not yet taken
-3,BSCS,CS 323,Modeling and Simulation,2,"CS 132, CS 211",Not yet taken
-3,BSCS,CS 323L,Modeling and Simulation (Lab),1,"CS 132, CS 211",Not yet taken
-3,BSCS,CS 324,Methods of Research in Computer Science,3,3rd year standing,Not yet taken
-3,BSCS,CS 325,Structure of Programming Languages,3,CS 211,Not yet taken
-3,BSCS,CFE 105B,"CICM in Action: Environmental Planning and Management and Disaster Risk Reduction Management",1.5,CFE 105A,Not yet taken
-3,BSCS,CS 331,Practicum,6,4th year standing,Not yet taken
-4,BSIT,IT 411,IT Project 2,3,IT 321,Not yet taken
-4,BSIT,IT 412,IT Resource Management,3,"IT 313, IT 324",Not yet taken
-4,BSIT,ITE,Elective 4,3,3rd year standing,Not yet taken
-4,BSIT,ITE,Elective 5,3,3rd year standing,Not yet taken
-4,BSIT,CFE 106A,Embracing the CICM Mission,1.5,CFE 105B,Not yet taken
-4,BSIT,IT 421,Practicum,9,4th year standing,Not yet taken
-4,BSIT,CFE 106B,Embracing the CICM Mission,1.5,CFE 106A,Not yet taken
-4,BSIT,"FOR LANG 1",Foreign Language 1,3,,Not yet taken
-4,BSCS,CFE 106A,Embracing the CICM Mission,1.5,CFE 105B,Not yet taken
-4,BSCS,CS 411,CS Thesis 1,3,CS 324,Not yet taken
-4,BSCS,CS 412,Information Assurance and Security,3,core courses,Not yet taken
-4,BSCS,CS 413,Professional Practice and Cyberethics,3,"GETHICS, CS 231",Not yet taken
-4,BSCS,CSE,Elective 1,3,3rd year standing,Not yet taken
-4,BSCS,CSE,Elective 2,3,3rd year standing,Not yet taken
-4,BSCS,CFE 106B,Embracing the CICM Mission,1.5,CFE 106A,Not yet taken
-4,BSCS,CS 421,CS Thesis 2,3,CS Thesis 1,Not yet taken
-4,BSCS,CS 422,Distributed Computing,3,4th year standing,Not yet taken
-4,BSCS,"FOR LANG 1",Foreign Language 1,3,,Not yet taken
-4,BSCS,CSE,Elective 3,3,4th year standing,Not yet taken
-4,BSCS,CSE,Elective 4,3,4th year standing,Not yet taken
-
+YearLevel,Course,Semester,CourseCode,CourseTitle,Units,Prerequisite,Grade
+1,BSIT,1st Semester,IT 111,Introduction to Computing,2,,86
+1,BSIT,1st Semester,IT 111L,Introduction to Computing (Lab),1,,86
+1,BSIT,1st Semester,IT 112,Computer Programming 1,2,,86
+1,BSIT,1st Semester,IT 112L,Computer Programming 1 (Lab),1,,86
+1,BSIT,1st Semester,IT 113,Discrete Mathematics,3,,97
+1,BSIT,1st Semester,GART,Art Appreciation,3,,96
+1,BSIT,1st Semester,GSELF,Understanding the Self,3,,94
+1,BSIT,1st Semester,GHIST,Readings in Philippine History,3,,90
+1,BSIT,1st Semester,FIT HW,Physical Activity Towards Health and Fitness (Health and Wellness),2,,93
+1,BSIT,1st Semester,CFE 101,God’s Journey with His People,3,,Not yet taken
+1,BSIT,2nd Semester,IT 121,Information System Fundamentals,3,IT 111,Not yet taken
+1,BSIT,2nd Semester,IT 122,Computer Programming 2,2,IT 112,Not yet taken
+1,BSIT,2nd Semester,IT 122L,Computer Programming 2 (Lab),1,IT 112,Not yet taken
+1,BSIT,2nd Semester,IT 123,Platform Technologies,2,IT 111,Not yet taken
+1,BSIT,2nd Semester,IT 123L,Platform Technologies (Lab),1,IT 111,Not yet taken
+1,BSIT,2nd Semester,GMATH,Mathematics in the Modern World,3,,Not yet taken
+1,BSIT,2nd Semester,GPCOM,Purposive Communication,3,,Not yet taken
+1,BSIT,2nd Semester,GCWORLD,The Contemporary World,3,,Not yet taken
+1,BSIT,2nd Semester,FIT CS,Physical Activity Towards Health and Fitness (Combative Sports),2,,Not yet taken
+1,BSIT,2nd Semester,CFE 102,Christian Morality in Our Times,3,,Not yet taken
+1,BSIT,Short Term,IT 131,Computer Architecture,2,IT 112,Not yet taken
+1,BSIT,Short Term,IT 131L,Computer Architecture (Lab),1,IT 112,Not yet taken
+1,BSIT,Short Term,GRIZAL,The Life and Works of Rizal,3,,Not yet taken
+1,BSCS,1st Semester,CS 111,Introduction to Computing,2,,Not yet taken
+1,BSCS,1st Semester,CS 111L,Introduction to Computing (Lab),1,,Not yet taken
+1,BSCS,1st Semester,CS 112,Computer Programming 1,2,,Not yet taken
+1,BSCS,1st Semester,CS 112L,Computer Programming 1 (Lab),1,,Not yet taken
+1,BSCS,1st Semester,CS 113,Discrete Structures,3,,Not yet taken
+1,BSCS,1st Semester,GMAT,Mathematics in the Modern World,3,,Not yet taken
+1,BSCS,1st Semester,GART,Art Appreciation,3,,Not yet taken
+1,BSCS,1st Semester,GHIST,Readings in Philippine History,3,,Not yet taken
+1,BSCS,1st Semester,FIT HW,Physical Activity Towards Health and Fitness,2,,Not yet taken
+1,BSCS,1st Semester,CFE 101,God's Journey with His People,3,,Not yet taken
+1,BSCS,2nd Semester,CS 121,Digital Logic Design,3,CS 111,Not yet taken
+1,BSCS,2nd Semester,CS 122,Computer Programming 2,2,CS 112,Not yet taken
+1,BSCS,2nd Semester,CS 122L,Computer Programming 2 (Lab),1,CS 112,Not yet taken
+1,BSCS,2nd Semester,CS 123,Architecture and Organization,2,CS 112,Not yet taken
+1,BSCS,2nd Semester,CS 123L,Architecture and Organization (Lab),1,CS 112,Not yet taken
+1,BSCS,2nd Semester,GSELF,Understanding the Self,3,,Not yet taken
+1,BSCS,2nd Semester,GPCOM,Purposive Communication,3,,Not yet taken
+1,BSCS,2nd Semester,GENVI,Environmental Science,3,,Not yet taken
+1,BSCS,2nd Semester,FIT CS,Physical Activity Towards Health and Fitness (Combative Sports),2,,Not yet taken
+1,BSCS,2nd Semester,CFE 102,Christian Morality in Our Times,3,,Not yet taken
+1,BSCS,Short Term,CS 131,Software Modeling and Analysis,3,CS 111,Not yet taken
+1,BSCS,Short Term,CS 132,Mathematics for Computer Science,3,,Not yet taken
+2,BSIT,1st Semester,IT 211,Requirements Analysis and Modeling,3,IT 121,Not yet taken
+2,BSIT,1st Semester,IT 212,Data Structures,2,"IT 113, IT 122",Not yet taken
+2,BSIT,1st Semester,IT 212L,Data Structures (Lab),1,"IT 113, IT 122",Not yet taken
+2,BSIT,1st Semester,IT 213,Network Fundamentals,2,"IT 131, IT 123",Not yet taken
+2,BSIT,1st Semester,IT 213L,Network Fundamentals (Lab),1,"IT 131, IT 123",Not yet taken
+2,BSIT,1st Semester,GSTS,Science Technology and Society,3,,Not yet taken
+2,BSIT,1st Semester,GENTREP,The Entrepreneurial Mind,3,,Not yet taken
+2,BSIT,1st Semester,GRVA,Reading Visual Art,3,,Not yet taken
+2,BSIT,1st Semester,NSTP-CWTS 1,Foundations of Service,3,,Not yet taken
+2,BSIT,1st Semester,FIT OA,Physical Activity Towards Health and Fitness (Outdoor and Adventure Activities),2,,Not yet taken
+2,BSIT,1st Semester,CFE 103,Catholic Foundation of Mission,3,,Not yet taken
+2,BSIT,2nd Semester,IT 221,Information Management,2,IT 212,Not yet taken
+2,BSIT,2nd Semester,IT 221L,Information Management (Lab),1,IT 212,Not yet taken
+2,BSIT,2nd Semester,IT 222,Integrative Technologies,2,IT 122,Not yet taken
+2,BSIT,2nd Semester,IT 222L,Integrative Technologies (Lab),1,IT 122,Not yet taken
+2,BSIT,2nd Semester,IT 223,Human Computer Interaction,3,IT 122,Not yet taken
+2,BSIT,2nd Semester,GENVI,Environmental Science,3,,Not yet taken
+2,BSIT,2nd Semester,NSTP-CWTS 2,Social Awareness and Empowerment for Service,3,NSTP-CWTS 1,Not yet taken
+2,BSIT,2nd Semester,FIT AQ,Physical Activity Towards Health and Fitness (Aquatics),2,,Not yet taken
+2,BSIT,2nd Semester,CFE 104,CICM Missionary Identity,3,CFE 103,Not yet taken
+2,BSIT,Short Term,CS 314,Social and Personal Development in the ICT Workplace,3,"CS 111, GSELF",Not yet taken
+2,BSIT,Short Term,CS 315,Technology-Assisted Presentation and Presentation,3,"CS 111, GPCOM",Not yet taken
+2,BSIT,Short Term,GETHICS,Ethics,3,,Not yet taken
+2,BSCS,1st Semester,CS 211,Data Structures,2,"CS 112, CS 113",Not yet taken
+2,BSCS,1st Semester,CS 211L,Data Structures (Lab),1,"CS 112, CS 113",Not yet taken
+2,BSCS,1st Semester,CS 212,Operating Systems,2,CS 123,Not yet taken
+2,BSCS,1st Semester,CS 212L,Operating Systems (Lab),1,CS 123,Not yet taken
+2,BSCS,1st Semester,CS 213,Human Computer Interaction,3,CS 122,Not yet taken
+2,BSCS,1st Semester,GSTS,Science Technology and Society,3,,Not yet taken
+2,BSCS,1st Semester,GRVA,Reading Visual Art,3,,Not yet taken
+2,BSCS,1st Semester,NSTP-CWTS 1,Foundations of Service,3,,Not yet taken
+2,BSCS,1st Semester,FIT OA,Physical Activity Towards Health and Fitness (Outdoor and Adventure Activities),2,,Not yet taken
+2,BSCS,1st Semester,CFE 103,Catholic Foundation of Mission,3,,Not yet taken
+2,BSCS,2nd Semester,CS 221,Information Management,2,CS 211,Not yet taken
+2,BSCS,2nd Semester,CS 221L,Information Management (Lab),1,CS 211,Not yet taken
+2,BSCS,2nd Semester,CS 222,Computer Programming 3,2,CS 122,Not yet taken
+2,BSCS,2nd Semester,CS 222L,Computer Programming 3 (Lab),1,CS 122,Not yet taken
+2,BSCS,2nd Semester,CS 223,Automata and Formal Languages,3,CS 132,Not yet taken
+2,BSCS,2nd Semester,GETHICS,Ethics,3,,Not yet taken
+2,BSCS,2nd Semester,GCWORLD,The Contemporary World,3,,Not yet taken
+2,BSCS,2nd Semester,NSTP-CWTS 2,Social Awareness and Empowerment for Service,3,NSTP-CWTS 1,Not yet taken
+2,BSCS,2nd Semester,FIT AQ,Physical Activity Towards Health and Fitness (Aquatics),2,,Not yet taken
+2,BSCS,2nd Semester,CFE 104,CICM Missionary Identity,3,CFE 103,Not yet taken
+2,BSCS,Short Term,CS 231,Computer Networks,2,CS 212,Not yet taken
+2,BSCS,Short Term,CS 231L,Computer Networks (Lab),1,CS 212,Not yet taken
+2,BSCS,Short Term,GRIZAL,The Life and Works of Rizal,3,,Not yet taken
+2,BSCS,Short Term,GENTREP,The Entrepreneurial Mind,3,,Not yet taken
+3,BSIT,1st Semester,IT 311,Applications Development,2,IT 122,Not yet taken
+3,BSIT,1st Semester,IT 311L,Applications Development (Lab),1,IT 122,Not yet taken
+3,BSIT,1st Semester,IT 312,Web Technologies,2,IT 212,Not yet taken
+3,BSIT,1st Semester,IT 312L,Web Technologies (Lab),1,IT 212,Not yet taken
+3,BSIT,1st Semester,IT 313,Software Engineering,3,"IT 211, IT 221",Not yet taken
+3,BSIT,1st Semester,IT 314,Social and Professional Issues in Information Technology,3,"GETHICS, IT 231",Not yet taken
+3,BSIT,1st Semester,IT 315,Technopreneurship,3,"GENTREP, IT 211",Not yet taken
+3,BSIT,1st Semester,ITE,Elective 1,3,3rd year standing,Not yet taken
+3,BSIT,1st Semester,CFE 105A,"CICM in Action: Justice, Peace, and Integrity of Creation, Indigenous Peoples, and Interreligious Dialogue",1.5,"CFE 103, CFE 104",Not yet taken
+3,BSIT,2nd Semester,IT 321,IT Project 1,3,3rd year standing,Not yet taken
+3,BSIT,2nd Semester,IT 322,Data Analytics,2,IT 221,Not yet taken
+3,BSIT,2nd Semester,IT 322L,Data Analytics (Lab),1,IT 221,Not yet taken
+3,BSIT,2nd Semester,IT 323,System Administration and Maintenance,2,IT 213,Not yet taken
+3,BSIT,2nd Semester,IT 323L,System Administration and Maintenance (Lab),1,IT 213,Not yet taken
+3,BSIT,2nd Semester,IT 324,System Integration and Architecture,3,"IT 211, IT 222",Not yet taken
+3,BSIT,2nd Semester,IT 325,Field Trips and Seminars,3,3rd year standing,Not yet taken
+3,BSIT,2nd Semester,ITE,Elective 2,3,3rd year standing,Not yet taken
+3,BSIT,2nd Semester,CFE 105B,"CICM in Action: Environmental Planning and Management and Disaster Risk Reduction Management",1.5,CFE 105A,Not yet taken
+3,BSIT,Short Term,IT 331,Information Assurance and Security,3,core courses,Not yet taken
+3,BSIT,Short Term,ITE,Elective 3,3,3rd year standing,Not yet taken
+3,BSCS,1st Semester,CS 311,Applications Development,2,CS 122,Not yet taken
+3,BSCS,1st Semester,CS 311L,Applications Development (Lab),1,CS 122,Not yet taken
+3,BSCS,1st Semester,CS 312,Web Systems Development,2,CS 211,Not yet taken
+3,BSCS,1st Semester,CS 312L,Web Systems Development (Lab),1,CS 211,Not yet taken
+3,BSCS,1st Semester,CS 313,Software Engineering,3,"CS 131, CS 221",Not yet taken
+3,BSCS,1st Semester,CS 314,Social and Personal Development in the ICT Workplace,3,"CS 111, GSELF",Not yet taken
+3,BSCS,1st Semester,CS 315,Technology-Assisted Presentation and Presentation,3,"CS 111, GPCOM",Not yet taken
+3,BSCS,1st Semester,CSM 316,Numerical Methods for Computer Science,3,CS 132,Not yet taken
+3,BSCS,1st Semester,CFE 105A,"CICM in Action: Justice, Peace, and Integrity of Creation, Indigenous Peoples, and Interreligious Dialogue",1.5,"CFE 103, CFE 104",Not yet taken
+3,BSCS,2nd Semester,CS 321,Artificial Intelligence,3,"CS 132, CS 211",Not yet taken
+3,BSCS,2nd Semester,CS 322,Data Science,2,CS 221,Not yet taken
+3,BSCS,2nd Semester,CS 322L,Data Science (Lab),1,CS 221,Not yet taken
+3,BSCS,2nd Semester,CS 323,Modeling and Simulation,2,"CS 132, CS 211",Not yet taken
+3,BSCS,2nd Semester,CS 323L,Modeling and Simulation (Lab),1,"CS 132, CS 211",Not yet taken
+3,BSCS,2nd Semester,CS 324,Methods of Research in Computer Science,3,3rd year standing,Not yet taken
+3,BSCS,2nd Semester,CS 325,Structure of Programming Languages,3,CS 211,Not yet taken
+3,BSCS,2nd Semester,CFE 105B,"CICM in Action: Environmental Planning and Management and Disaster Risk Reduction Management",1.5,CFE 105A,Not yet taken
+3,BSCS,Short Term,CS 331,Practicum,6,4th year standing,Not yet taken
+4,BSIT,1st Semester,IT 411,IT Project 2,3,IT 321,Not yet taken
+4,BSIT,1st Semester,IT 412,IT Resource Management,3,"IT 313, IT 324",Not yet taken
+4,BSIT,1st Semester,ITE,Elective 4,3,3rd year standing,Not yet taken
+4,BSIT,1st Semester,ITE,Elective 5,3,3rd year standing,Not yet taken
+4,BSIT,1st Semester,CFE 106A,Embracing the CICM Mission,1.5,CFE 105B,Not yet taken
+4,BSIT,2nd Semester,IT 421,Practicum,9,4th year standing,Not yet taken
+4,BSIT,2nd Semester,CFE 106B,Embracing the CICM Mission,1.5,CFE 106A,Not yet taken
+4,BSIT,2nd Semester,"FOR LANG 1",Foreign Language 1,3,,Not yet taken
+4,BSCS,1st Semester,CFE 106A,Embracing the CICM Mission,1.5,CFE 105B,Not yet taken
+4,BSCS,1st Semester,CS 411,CS Thesis 1,3,CS 324,Not yet taken
+4,BSCS,1st Semester,CS 412,Information Assurance and Security,3,core courses,Not yet taken
+4,BSCS,1st Semester,CS 413,Professional Practice and Cyberethics,3,"GETHICS, CS 231",Not yet taken
+4,BSCS,1st Semester,CSE,Elective 1,3,3rd year standing,Not yet taken
+4,BSCS,1st Semester,CSE,Elective 2,3,3rd year standing,Not yet taken
+4,BSCS,2nd Semester,CFE 106B,Embracing the CICM Mission,1.5,CFE 106A,Not yet taken
+4,BSCS,2nd Semester,CS 421,CS Thesis 2,3,CS Thesis 1,Not yet taken
+4,BSCS,2nd Semester,CS 422,Distributed Computing,3,4th year standing,Not yet taken
+4,BSCS,2nd Semester,"FOR LANG 1",Foreign Language 1,3,,Not yet taken
+4,BSCS,2nd Semester,CSE,Elective 3,3,4th year standing,Not yet taken
+4,BSCS,2nd Semester,CSE,Elective 4,3,4th year standing,Not yet taken
