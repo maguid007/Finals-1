@@ -8,7 +8,7 @@ YearLevel,Course,Semester,CourseCode,CourseTitle,Units,Prerequisite,Grade
 1,BSIT,1st Semester,GSELF,Understanding the Self,3,,94
 1,BSIT,1st Semester,GHIST,Readings in Philippine History,3,,90
 1,BSIT,1st Semester,FIT HW,Physical Activity Towards Health and Fitness (Health and Wellness),2,,93
-1,BSIT,1st Semester,CFE 101,God’s Journey with His People,3,,Not yet taken
+1,BSIT,1st Semester,CFE 101,God’s Journey with His People,3,,90
 1,BSIT,2nd Semester,IT 121,Information System Fundamentals,3,IT 111,Not yet taken
 1,BSIT,2nd Semester,IT 122,Computer Programming 2,2,IT 112,Not yet taken
 1,BSIT,2nd Semester,IT 122L,Computer Programming 2 (Lab),1,IT 112,Not yet taken
@@ -108,7 +108,7 @@ YearLevel,Course,Semester,CourseCode,CourseTitle,Units,Prerequisite,Grade
 3,BSIT,2nd Semester,IT 324,System Integration and Architecture,3,"IT 211, IT 222",Not yet taken
 3,BSIT,2nd Semester,IT 325,Field Trips and Seminars,3,3rd year standing,Not yet taken
 3,BSIT,2nd Semester,ITE,Elective 2,3,3rd year standing,Not yet taken
-3,BSIT,2nd Semester,CFE 105B,"CICM in Action: Environmental Planning and Management and Disaster Risk Reduction Management",1.5,CFE 105A,Not yet taken
+3,BSIT,2nd Semester,CFE 105B,CICM in Action: Environmental Planning and Management and Disaster Risk Reduction Management,1.5,CFE 105A,Not yet taken
 3,BSIT,Short Term,IT 331,Information Assurance and Security,3,core courses,Not yet taken
 3,BSIT,Short Term,ITE,Elective 3,3,3rd year standing,Not yet taken
 3,BSCS,1st Semester,CS 311,Applications Development,2,CS 122,Not yet taken
@@ -127,7 +127,7 @@ YearLevel,Course,Semester,CourseCode,CourseTitle,Units,Prerequisite,Grade
 3,BSCS,2nd Semester,CS 323L,Modeling and Simulation (Lab),1,"CS 132, CS 211",Not yet taken
 3,BSCS,2nd Semester,CS 324,Methods of Research in Computer Science,3,3rd year standing,Not yet taken
 3,BSCS,2nd Semester,CS 325,Structure of Programming Languages,3,CS 211,Not yet taken
-3,BSCS,2nd Semester,CFE 105B,"CICM in Action: Environmental Planning and Management and Disaster Risk Reduction Management",1.5,CFE 105A,Not yet taken
+3,BSCS,2nd Semester,CFE 105B,CICM in Action: Environmental Planning and Management and Disaster Risk Reduction Management,1.5,CFE 105A,Not yet taken
 3,BSCS,Short Term,CS 331,Practicum,6,4th year standing,Not yet taken
 4,BSIT,1st Semester,IT 411,IT Project 2,3,IT 321,Not yet taken
 4,BSIT,1st Semester,IT 412,IT Resource Management,3,"IT 313, IT 324",Not yet taken
@@ -136,7 +136,7 @@ YearLevel,Course,Semester,CourseCode,CourseTitle,Units,Prerequisite,Grade
 4,BSIT,1st Semester,CFE 106A,Embracing the CICM Mission,1.5,CFE 105B,Not yet taken
 4,BSIT,2nd Semester,IT 421,Practicum,9,4th year standing,Not yet taken
 4,BSIT,2nd Semester,CFE 106B,Embracing the CICM Mission,1.5,CFE 106A,Not yet taken
-4,BSIT,2nd Semester,"FOR LANG 1",Foreign Language 1,3,,Not yet taken
+4,BSIT,2nd Semester,FOR LANG 1,Foreign Language 1,3,,Not yet taken
 4,BSCS,1st Semester,CFE 106A,Embracing the CICM Mission,1.5,CFE 105B,Not yet taken
 4,BSCS,1st Semester,CS 411,CS Thesis 1,3,CS 324,Not yet taken
 4,BSCS,1st Semester,CS 412,Information Assurance and Security,3,core courses,Not yet taken
@@ -146,6 +146,6 @@ YearLevel,Course,Semester,CourseCode,CourseTitle,Units,Prerequisite,Grade
 4,BSCS,2nd Semester,CFE 106B,Embracing the CICM Mission,1.5,CFE 106A,Not yet taken
 4,BSCS,2nd Semester,CS 421,CS Thesis 2,3,CS Thesis 1,Not yet taken
 4,BSCS,2nd Semester,CS 422,Distributed Computing,3,4th year standing,Not yet taken
-4,BSCS,2nd Semester,"FOR LANG 1",Foreign Language 1,3,,Not yet taken
+4,BSCS,2nd Semester,FOR LANG 1,Foreign Language 1,3,,Not yet taken
 4,BSCS,2nd Semester,CSE,Elective 3,3,4th year standing,Not yet taken
 4,BSCS,2nd Semester,CSE,Elective 4,3,4th year standing,Not yet taken
