@@ -5,21 +5,22 @@ public class CurriculumApp {
     private static List<Course> allCourses = new ArrayList<>();
     private static CurriculumManager<Course> curriculumManager;
     private static FileHandler<Course> fileHandler;
-    private static final String CSV_FILE = "BSCSBSIT2018.csv";
-    private static final String UPDATED_FILE = "BSCSBSIT2018_updated.csv";
+    private static String currentCSVFile;
+    private static String currentStudentId;
     private static Scanner scanner = new Scanner(System.in);
-    private static BufferedReader keyboardReader = new BufferedReader(new InputStreamReader(System.in));
 
     public static void main(String[] args) {
-        curriculumManager = new CurriculumManager<>(CSV_FILE);
         fileHandler = new FileHandler<>();
 
-        // Load data from CSV
-        allCourses = fileHandler.readCoursesFromCSV(CSV_FILE);
-        System.out.println("Loaded " + allCourses.size() + " courses from " + CSV_FILE);
+        // Login with student ID
+        if (!loginWithStudentId()) {
+            System.out.println("Exiting program. Goodbye!");
+            return;
+        }
 
-        // Group courses by term
-        curriculumManager.groupByTerm(allCourses, Course::getTermKey);
+        // Load curriculum data from the student's CSV file
+        curriculumManager = new CurriculumManager<>(currentCSVFile);
+        loadStudentData();
 
         boolean running = true;
         while (running) {
@@ -49,9 +50,74 @@ public class CurriculumApp {
         }
     }
 
+    private static boolean loginWithStudentId() {
+        System.out.println("\n===========================================");
+        System.out.println("    CURRICULUM MANAGEMENT SYSTEM");
+        System.out.println("         STUDENT LOGIN");
+        System.out.println("===========================================");
+
+        while (true) {
+            System.out.print("\nEnter Student ID (or 0 to exit): ");
+            String studentId = scanner.nextLine().trim();
+
+            if (studentId.equals("0")) {
+                return false;
+            }
+
+            if (studentId.isEmpty()) {
+                System.out.println("Student ID cannot be empty. Please try again.");
+                continue;
+            }
+
+            // Check if the CSV file exists for this student
+            String csvFile = studentId + ".csv";
+            File file = new File(csvFile);
+
+            if (file.exists() && file.isFile()) {
+                currentStudentId = studentId;
+                currentCSVFile = csvFile;
+                System.out.println("\nLogin successful! Welcome, Student " + currentStudentId);
+                System.out.println("Loading your curriculum data...");
+                return true;
+            } else {
+                System.out.println("\nError: No curriculum file found for Student ID: " + studentId);
+                System.out.println("Expected file: " + csvFile);
+                System.out.println("Please make sure your CSV file is in the same directory as this program.");
+                System.out.println("\nValid Student IDs with existing files:");
+                listAvailableStudentFiles();
+            }
+        }
+    }
+
+    private static void listAvailableStudentFiles() {
+        File directory = new File(".");
+        File[] files = directory.listFiles((dir, name) -> name.matches("\\d+\\.csv"));
+
+        if (files != null && files.length > 0) {
+            System.out.println("----------------------------------------");
+            for (File file : files) {
+                String fileName = file.getName();
+                String studentId = fileName.replace(".csv", "");
+                System.out.println("  - " + studentId);
+            }
+            System.out.println("----------------------------------------");
+        } else {
+            System.out.println("  No student CSV files found in current directory.");
+        }
+    }
+
+    private static void loadStudentData() {
+        allCourses = fileHandler.readCoursesFromCSV(currentCSVFile);
+        System.out.println("Loaded " + allCourses.size() + " courses for Student " + currentStudentId);
+
+        // Group courses by term
+        curriculumManager.groupByTerm(allCourses, Course::getTermKey);
+    }
+
     private static void displayMenu() {
         System.out.println("\n===========================================");
         System.out.println("    CURRICULUM MANAGEMENT SYSTEM");
+        System.out.println("    Student ID: " + currentStudentId);
         System.out.println("===========================================");
         System.out.println("1. Show subjects for each school term");
         System.out.println("2. Show subjects with grades for each term");
@@ -138,15 +204,11 @@ public class CurriculumApp {
                 System.out.print("\nPress ENTER to return to menu: ");
             }
 
-            // Read the FULL line input
-            String input = scanner.nextLine();
-            // Remove any whitespace and newline
-            input = input.trim();
+            String input = scanner.nextLine().trim();
 
             if (input.equals("0")) {
                 return;
             }
-            // If input is empty (just ENTER pressed), the loop continues to next semester
         }
     }
 
@@ -224,21 +286,17 @@ public class CurriculumApp {
             System.out.printf("Summary: %d Total | %d Passed | %d Failed | %d N/A\n",
                     courses.size(), passedCount, failedCount, naCount);
 
-            // Navigation prompt
             if (i < semesters.size() - 1) {
                 System.out.print("\nPress ENTER for next semester or type 0 to return to menu: ");
             } else {
                 System.out.print("\nPress ENTER to return to menu: ");
             }
 
-            // Read the FULL line input
-            String input = scanner.nextLine();
-            input = input.trim();
+            String input = scanner.nextLine().trim();
 
             if (input.equals("0")) {
                 return;
             }
-            // If input is empty (just ENTER pressed), the loop continues
         }
     }
 
@@ -472,12 +530,24 @@ public class CurriculumApp {
         String response = scanner.nextLine().trim().toUpperCase();
 
         if (response.equals("Y") || response.equals("YES")) {
+            // Create backup of current file
+            String backupFile = currentStudentId + "_backup.csv";
+            try {
+                copyFile(currentCSVFile, backupFile);
+                System.out.println("Backup created: " + backupFile);
+            } catch (IOException e) {
+                System.out.println("Warning: Could not create backup file.");
+            }
+
+            // Save to the student's file
             Collections.sort(allCourses);
-            fileHandler.writeCoursesToCSV(allCourses, UPDATED_FILE);
-            System.out.println("Data saved successfully to " + UPDATED_FILE);
+            fileHandler.writeCoursesToCSV(allCourses, currentCSVFile);
+            System.out.println("Data saved successfully to " + currentCSVFile);
 
             System.out.println("\nSave Summary:");
             System.out.println("--------------");
+            System.out.println("Student ID: " + currentStudentId);
+            System.out.println("File: " + currentCSVFile);
             System.out.println("Total courses saved: " + allCourses.size());
             System.out.println("Courses with grades: " + curriculumManager.getCoursesWithGrades().size());
             System.out.println("Courses without grades: " + curriculumManager.getCoursesWithoutGrades().size());
@@ -488,7 +558,15 @@ public class CurriculumApp {
         }
     }
 
-    // INPUT HELPER METHODS
+    private static void copyFile(String sourceFile, String destFile) throws IOException {
+        try (BufferedReader reader = new BufferedReader(new FileReader(sourceFile));
+             PrintWriter writer = new PrintWriter(new FileWriter(destFile))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                writer.println(line);
+            }
+        }
+    }
 
     private static int getIntInput(String prompt) {
         while (true) {
