@@ -27,10 +27,6 @@ public class CurriculumManager<T extends Course> {
         return termGroups;
     }
 
-    public Map<String, List<T>> getSortedTermGroups() {
-        return new TreeMap<>(termGroups);
-    }
-
     public List<T> getAllCourses() {
         List<T> allCourses = new ArrayList<>();
         for (List<T> courses : termGroups.values()) {
@@ -39,35 +35,30 @@ public class CurriculumManager<T extends Course> {
         return allCourses;
     }
 
+    public List<T> getCoursesByStudentId(String schoolId) {
+        return getAllCourses().stream()
+                .filter(course -> course.getSchoolId().equals(schoolId))
+                .collect(Collectors.toList());
+    }
+
+    public List<T> getCoursesByStudentIdAndProgram(String schoolId, String courseTaken) {
+        return getAllCourses().stream()
+                .filter(course -> course.getSchoolId().equals(schoolId) &&
+                        course.getCourseTaken().equals(courseTaken))
+                .collect(Collectors.toList());
+    }
+
     public List<T> getCoursesByProgram(String program) {
-        List<T> result = new ArrayList<>();
-        for (List<T> courses : termGroups.values()) {
-            for (T course : courses) {
-                if (course.getCourse().equalsIgnoreCase(program)) {
-                    result.add(course);
-                }
-            }
-        }
-        return result;
+        return getAllCourses().stream()
+                .filter(course -> course.getCourseTaken().equals(program))
+                .collect(Collectors.toList());
     }
 
-    public List<T> getCoursesByProgramAndYear(String program, int yearLevel) {
-        List<T> result = new ArrayList<>();
+    public T findCourse(String schoolId, String courseCode) {
         for (List<T> courses : termGroups.values()) {
             for (T course : courses) {
-                if (course.getCourse().equalsIgnoreCase(program) &&
-                        course.getYearLevel() == yearLevel) {
-                    result.add(course);
-                }
-            }
-        }
-        return result;
-    }
-
-    public T findCourse(String courseCode) {
-        for (List<T> courses : termGroups.values()) {
-            for (T course : courses) {
-                if (course.getCourseCode().equalsIgnoreCase(courseCode)) {
+                if (course.getSchoolId().equals(schoolId) &&
+                        course.getCourseCode().equalsIgnoreCase(courseCode)) {
                     return course;
                 }
             }
@@ -75,19 +66,37 @@ public class CurriculumManager<T extends Course> {
         return null;
     }
 
-    public List<T> getCoursesWithoutGrades() {
-        return getAllCourses().stream()
+    public List<T> getCoursesWithoutGrades(String schoolId, String courseTaken) {
+        return getCoursesByStudentIdAndProgram(schoolId, courseTaken).stream()
                 .filter(course -> course.getGrade().equals("Not yet taken"))
                 .collect(Collectors.toList());
     }
 
-    public List<T> getCoursesWithGrades() {
-        return getAllCourses().stream()
+    public List<T> getCoursesWithGrades(String schoolId, String courseTaken) {
+        return getCoursesByStudentIdAndProgram(schoolId, courseTaken).stream()
                 .filter(course -> !course.getGrade().equals("Not yet taken"))
                 .collect(Collectors.toList());
     }
 
-    public int getTotalCourses() {
-        return getAllCourses().size();
+    public void updateCourseTakenForStudent(String schoolId, String newCourseTaken) {
+        for (Map.Entry<String, List<T>> entry : termGroups.entrySet()) {
+            List<T> courses = entry.getValue();
+            for (T course : courses) {
+                if (course.getSchoolId().equals(schoolId)) {
+                    course.setCourseTaken(newCourseTaken);
+                }
+            }
+        }
+    }
+
+    public String getStudentCourse(String schoolId) {
+        for (List<T> courses : termGroups.values()) {
+            for (T course : courses) {
+                if (course.getSchoolId().equals(schoolId)) {
+                    return course.getCourseTaken();
+                }
+            }
+        }
+        return "Unknown";
     }
 }

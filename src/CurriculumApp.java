@@ -5,22 +5,27 @@ public class CurriculumApp {
     private static List<Course> allCourses = new ArrayList<>();
     private static CurriculumManager<Course> curriculumManager;
     private static FileHandler<Course> fileHandler;
-    private static String currentCSVFile;
+    private static final String CSV_FILE = "BSITBSCSRecords.csv";
+    private static final String BACKUP_FILE = "BSITBSCSRecords_backup.csv";
     private static String currentStudentId;
+    private static String currentCourseTaken;
     private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
         fileHandler = new FileHandler<>();
+        curriculumManager = new CurriculumManager<>(CSV_FILE);
+
+        // Create backup of original file
+        createBackup();
+
+        // Load all records
+        loadAllRecords();
 
         // Login with student ID
         if (!loginWithStudentId()) {
             System.out.println("Exiting program. Goodbye!");
             return;
         }
-
-        // Load curriculum data from the student's CSV file
-        curriculumManager = new CurriculumManager<>(currentCSVFile);
-        loadStudentData();
 
         boolean running = true;
         while (running) {
@@ -41,6 +46,9 @@ public class CurriculumApp {
                     editCourse();
                     break;
                 case 5:
+                    switchCourse();
+                    break;
+                case 6:
                     saveAndQuit();
                     running = false;
                     break;
@@ -48,6 +56,21 @@ public class CurriculumApp {
                     System.out.println("Invalid choice. Please try again.");
             }
         }
+    }
+
+    private static void createBackup() {
+        try {
+            copyFile(CSV_FILE, BACKUP_FILE);
+            System.out.println("Backup created: " + BACKUP_FILE);
+        } catch (IOException e) {
+            System.out.println("Warning: Could not create backup file.");
+        }
+    }
+
+    private static void loadAllRecords() {
+        allCourses = fileHandler.readCoursesFromCSV(CSV_FILE);
+        System.out.println("Loaded " + allCourses.size() + " total records from " + CSV_FILE);
+        curriculumManager.groupByTerm(allCourses, Course::getTermKey);
     }
 
     private static boolean loginWithStudentId() {
@@ -69,75 +92,195 @@ public class CurriculumApp {
                 continue;
             }
 
-            // Check if the CSV file exists for this student
-            String csvFile = studentId + ".csv";
-            File file = new File(csvFile);
+            // Check if student exists in records
+            List<Course> studentCourses = curriculumManager.getCoursesByStudentId(studentId);
 
-            if (file.exists() && file.isFile()) {
+            if (!studentCourses.isEmpty()) {
                 currentStudentId = studentId;
-                currentCSVFile = csvFile;
-                System.out.println("\nLogin successful! Welcome, Student " + currentStudentId);
-                System.out.println("Loading your curriculum data...");
+                currentCourseTaken = studentCourses.get(0).getCourseTaken();
+                System.out.println("\nLogin successful!");
+                System.out.println("Student ID: " + currentStudentId);
+                System.out.println("Course: " + currentCourseTaken +
+                        (currentCourseTaken.equals("BSIT") ? " (BS Information Technology)" : " (BS Computer Science)"));
+                System.out.println("Total records loaded: " + studentCourses.size());
                 return true;
             } else {
-                System.out.println("\nError: No curriculum file found for Student ID: " + studentId);
-                System.out.println("Expected file: " + csvFile);
-                System.out.println("Please make sure your CSV file is in the same directory as this program.");
-                System.out.println("\nValid Student IDs with existing files:");
-                listAvailableStudentFiles();
+                System.out.println("\nError: No records found for Student ID: " + studentId);
+                System.out.println("\nAvailable Student IDs:");
+                listAvailableStudentIds();
             }
         }
     }
 
-    private static void listAvailableStudentFiles() {
-        File directory = new File(".");
-        File[] files = directory.listFiles((dir, name) -> name.matches("\\d+\\.csv"));
-
-        if (files != null && files.length > 0) {
-            System.out.println("----------------------------------------");
-            for (File file : files) {
-                String fileName = file.getName();
-                String studentId = fileName.replace(".csv", "");
-                System.out.println("  - " + studentId);
-            }
-            System.out.println("----------------------------------------");
-        } else {
-            System.out.println("  No student CSV files found in current directory.");
+    private static void listAvailableStudentIds() {
+        Set<String> studentIds = new TreeSet<>();
+        for (Course course : allCourses) {
+            studentIds.add(course.getSchoolId());
         }
-    }
 
-    private static void loadStudentData() {
-        allCourses = fileHandler.readCoursesFromCSV(currentCSVFile);
-        System.out.println("Loaded " + allCourses.size() + " courses for Student " + currentStudentId);
-
-        // Group courses by term
-        curriculumManager.groupByTerm(allCourses, Course::getTermKey);
+        System.out.println("----------------------------------------");
+        for (String id : studentIds) {
+            String course = curriculumManager.getStudentCourse(id);
+            System.out.println("  " + id + " (" + course + ")");
+        }
+        System.out.println("----------------------------------------");
     }
 
     private static void displayMenu() {
         System.out.println("\n===========================================");
         System.out.println("    CURRICULUM MANAGEMENT SYSTEM");
         System.out.println("    Student ID: " + currentStudentId);
+        System.out.println("    Course: " + currentCourseTaken);
         System.out.println("===========================================");
         System.out.println("1. Show subjects for each school term");
         System.out.println("2. Show subjects with grades for each term");
         System.out.println("3. Enter grades for subjects recently finished");
         System.out.println("4. Edit a course");
-        System.out.println("5. Quit");
+        System.out.println("5. Switch Course");
+        System.out.println("6. Save and Quit");
         System.out.println("===========================================");
     }
 
-    private static void showSubjectsForEachTerm() {
-        String program = selectProgram();
-        if (program == null) return;
+    private static void switchCourse() {
+        System.out.println("\n===========================================");
+        System.out.println("SWITCH COURSE");
+        System.out.println("===========================================");
+        System.out.println("Current Course: " + currentCourseTaken);
+        System.out.println("\nAvailable Courses:");
+        System.out.println("1. BS Information Technology (BSIT)");
+        System.out.println("2. BS Computer Science (BSCS)");
+        System.out.println("0. Cancel");
 
-        List<Course> programCourses = curriculumManager.getCoursesByProgram(program);
+        int choice = getIntInput("Enter your choice: ");
+
+        String newCourse = null;
+        switch (choice) {
+            case 1:
+                newCourse = "BSIT";
+                break;
+            case 2:
+                newCourse = "BSCS";
+                break;
+            case 0:
+                return;
+            default:
+                System.out.println("Invalid choice!");
+                return;
+        }
+
+        if (newCourse.equals(currentCourseTaken)) {
+            System.out.println("You are already enrolled in " + currentCourseTaken + ".");
+            return;
+        }
+
+        // Check if student already has courses in the new program
+        List<Course> existingNewCourses = curriculumManager.getCoursesByStudentIdAndProgram(currentStudentId, newCourse);
+
+        if (!existingNewCourses.isEmpty()) {
+            // Student already has some courses in this program
+            System.out.println("\nYou already have records in " + newCourse + ".");
+            System.out.println("Switching to " + newCourse + "...");
+            currentCourseTaken = newCourse;
+            System.out.println("Course switched successfully! Grades from previous course are retained.");
+        } else {
+            // Need to copy curriculum structure but preserve grades where possible
+            System.out.print("\nSwitching to " + newCourse + ". This will copy the curriculum structure.");
+            System.out.print("\nDo you want to proceed? (Y/N): ");
+            String confirm = scanner.nextLine().trim().toUpperCase();
+
+            if (confirm.equals("Y") || confirm.equals("YES")) {
+                copyCurriculumToNewCourse(newCourse);
+                currentCourseTaken = newCourse;
+                System.out.println("Course switched successfully!");
+            } else {
+                System.out.println("Course switch cancelled.");
+            }
+        }
+    }
+
+    private static void copyCurriculumToNewCourse(String newCourse) {
+        // Get current courses
+        List<Course> currentCourses = curriculumManager.getCoursesByStudentIdAndProgram(currentStudentId, currentCourseTaken);
+
+        // Create new courses for the new program
+        List<Course> newCourses = new ArrayList<>();
+        Map<String, String> gradeMap = new HashMap<>();
+
+        // Store grades from current courses (by course code)
+        for (Course course : currentCourses) {
+            if (!course.getGrade().equals("Not yet taken")) {
+                gradeMap.put(course.getCourseCode(), course.getGrade());
+            }
+        }
+
+        // Get template courses for the new program (from other students)
+        List<Course> templateCourses = new ArrayList<>();
+        for (Course course : allCourses) {
+            if (course.getCourseTaken().equals(newCourse) &&
+                    !course.getSchoolId().equals(currentStudentId)) {
+                // Check if this course code already exists for this student
+                boolean exists = false;
+                for (Course existing : newCourses) {
+                    if (existing.getCourseCode().equals(course.getCourseCode()) &&
+                            existing.getYearLevel() == course.getYearLevel() &&
+                            existing.getSemester().equals(course.getSemester())) {
+                        exists = true;
+                        break;
+                    }
+                }
+                if (!exists) {
+                    templateCourses.add(course);
+                }
+            }
+        }
+
+        // Create new courses with preserved grades where applicable
+        for (Course template : templateCourses) {
+            String grade = "Not yet taken";
+            // Check if there's a matching course code with a grade
+            if (gradeMap.containsKey(template.getCourseCode())) {
+                grade = gradeMap.get(template.getCourseCode());
+            }
+
+            Course newCourseObj = new Course(
+                    currentStudentId,
+                    template.getYearLevel(),
+                    newCourse,
+                    template.getSemester(),
+                    template.getCourseCode(),
+                    template.getCourseTitle(),
+                    template.getUnits(),
+                    template.getPrerequisite(),
+                    grade,
+                    newCourse
+            );
+
+            newCourses.add(newCourseObj);
+        }
+
+        // Add new courses to the system
+        allCourses.addAll(newCourses);
+        curriculumManager.groupByTerm(allCourses, Course::getTermKey);
+
+        System.out.println("Added " + newCourses.size() + " courses for " + newCourse);
+        if (!gradeMap.isEmpty()) {
+            System.out.println("Preserved " + gradeMap.size() + " grades from previous course.");
+        }
+    }
+
+    private static void showSubjectsForEachTerm() {
+        List<Course> studentCourses = curriculumManager.getCoursesByStudentIdAndProgram(currentStudentId, currentCourseTaken);
 
         Map<Integer, Map<Integer, List<Course>>> yearSemGroups = new TreeMap<>();
-        for (Course course : programCourses) {
+        for (Course course : studentCourses) {
             yearSemGroups.computeIfAbsent(course.getYearLevel(), k -> new TreeMap<>())
                     .computeIfAbsent(course.getSemesterOrder(), k -> new ArrayList<>())
                     .add(course);
+        }
+
+        if (yearSemGroups.isEmpty()) {
+            System.out.println("\nNo courses found for " + currentCourseTaken + ".");
+            return;
         }
 
         System.out.println("\nSelect Year Level:");
@@ -169,8 +312,7 @@ public class CurriculumApp {
             String semName = courses.get(0).getSemester();
 
             System.out.println("\n===========================================");
-            System.out.println("Year " + yearChoice + " - " + semName + " - " +
-                    (program.equals("BSIT") ? "BS INFORMATION TECHNOLOGY" : "BS COMPUTER SCIENCE"));
+            System.out.println("Year " + yearChoice + " - " + semName + " - " + currentCourseTaken);
             System.out.println("===========================================");
             System.out.println("-------------------------------------------------------------------------");
             System.out.printf("%-12s  %-40s  %5s  %-10s\n",
@@ -197,7 +339,6 @@ public class CurriculumApp {
             System.out.println("Total Courses: " + courses.size() + " | Total Units: " +
                     String.format("%.1f", courses.stream().mapToDouble(Course::getUnits).sum()));
 
-            // Navigation prompt
             if (i < semesters.size() - 1) {
                 System.out.print("\nPress ENTER for next semester or type 0 to return to menu: ");
             } else {
@@ -213,16 +354,18 @@ public class CurriculumApp {
     }
 
     private static void showSubjectsWithGrades() {
-        String program = selectProgram();
-        if (program == null) return;
-
-        List<Course> programCourses = curriculumManager.getCoursesByProgram(program);
+        List<Course> studentCourses = curriculumManager.getCoursesByStudentIdAndProgram(currentStudentId, currentCourseTaken);
 
         Map<Integer, Map<Integer, List<Course>>> yearSemGroups = new TreeMap<>();
-        for (Course course : programCourses) {
+        for (Course course : studentCourses) {
             yearSemGroups.computeIfAbsent(course.getYearLevel(), k -> new TreeMap<>())
                     .computeIfAbsent(course.getSemesterOrder(), k -> new ArrayList<>())
                     .add(course);
+        }
+
+        if (yearSemGroups.isEmpty()) {
+            System.out.println("\nNo courses found for " + currentCourseTaken + ".");
+            return;
         }
 
         System.out.println("\nSelect Year Level:");
@@ -254,8 +397,7 @@ public class CurriculumApp {
             String semName = courses.get(0).getSemester();
 
             System.out.println("\n===========================================");
-            System.out.println("Year " + yearChoice + " - " + semName + " - " +
-                    (program.equals("BSIT") ? "BS INFORMATION TECHNOLOGY" : "BS COMPUTER SCIENCE"));
+            System.out.println("Year " + yearChoice + " - " + semName + " - " + currentCourseTaken);
             System.out.println("===========================================");
             System.out.println("---------------------------------------------------------------------------------");
             System.out.printf("%-12s  %-35s  %6s  %-10s\n",
@@ -317,51 +459,20 @@ public class CurriculumApp {
         }
     }
 
-    private static String selectProgram() {
-        System.out.println("\nSelect Program:");
-        System.out.println("1. BS Information Technology (BSIT)");
-        System.out.println("2. BS Computer Science (BSCS)");
-        System.out.println("0. Return to Main Menu");
-
-        int choice = getIntInput("Enter your choice: ");
-
-        switch (choice) {
-            case 1:
-                return "BSIT";
-            case 2:
-                return "BSCS";
-            case 0:
-                return null;
-            default:
-                System.out.println("Invalid choice! Returning to main menu.");
-                return null;
-        }
-    }
-
     private static void enterGrades() {
-        String program = selectProgram();
-        if (program == null) return;
-
         System.out.println("\n===========================================");
         System.out.println("ENTER GRADES FOR FINISHED SUBJECTS");
         System.out.println("===========================================");
 
-        List<Course> ungradedCourses = curriculumManager.getCoursesWithoutGrades();
-        List<Course> programUngraded = new ArrayList<>();
+        List<Course> ungradedCourses = curriculumManager.getCoursesWithoutGrades(currentStudentId, currentCourseTaken);
 
-        for (Course course : ungradedCourses) {
-            if (course.getCourse().equals(program)) {
-                programUngraded.add(course);
-            }
-        }
-
-        if (programUngraded.isEmpty()) {
-            System.out.println("\nAll courses for " + program + " already have grades!");
+        if (ungradedCourses.isEmpty()) {
+            System.out.println("\nAll courses for " + currentCourseTaken + " already have grades!");
             return;
         }
 
         Map<Integer, Map<Integer, List<Course>>> yearSemGroups = new TreeMap<>();
-        for (Course course : programUngraded) {
+        for (Course course : ungradedCourses) {
             yearSemGroups.computeIfAbsent(course.getYearLevel(), k -> new TreeMap<>())
                     .computeIfAbsent(course.getSemesterOrder(), k -> new ArrayList<>())
                     .add(course);
@@ -370,7 +481,7 @@ public class CurriculumApp {
         List<Course> indexedCourses = new ArrayList<>();
         int index = 1;
 
-        System.out.println("\nCourses without grades (" + programUngraded.size() + " total):");
+        System.out.println("\nCourses without grades (" + ungradedCourses.size() + " total):");
         System.out.println("--------------------------------------------------------------");
 
         for (Map.Entry<Integer, Map<Integer, List<Course>>> yearEntry : yearSemGroups.entrySet()) {
@@ -442,7 +553,7 @@ public class CurriculumApp {
         System.out.print("Enter course code to edit: ");
         String courseCode = scanner.nextLine().trim();
 
-        Course course = curriculumManager.findCourse(courseCode);
+        Course course = curriculumManager.findCourse(currentStudentId, courseCode);
         if (course == null) {
             System.out.println("Course not found: " + courseCode);
             return;
@@ -456,7 +567,7 @@ public class CurriculumApp {
         System.out.println("\nCurrent Course Details:");
         System.out.println("------------------------");
         System.out.println("Course Code   : " + course.getCourseCode());
-        System.out.println("Program       : " + course.getCourse());
+        System.out.println("Course        : " + course.getCourseTaken());
         System.out.println("Year Level    : " + course.getYearLevel());
         System.out.println("Semester      : " + course.getSemester());
         System.out.println("Course Title  : " + course.getCourseTitle());
@@ -530,27 +641,23 @@ public class CurriculumApp {
         String response = scanner.nextLine().trim().toUpperCase();
 
         if (response.equals("Y") || response.equals("YES")) {
-            // Create backup of current file
-            String backupFile = currentStudentId + "_backup.csv";
-            try {
-                copyFile(currentCSVFile, backupFile);
-                System.out.println("Backup created: " + backupFile);
-            } catch (IOException e) {
-                System.out.println("Warning: Could not create backup file.");
-            }
-
-            // Save to the student's file
             Collections.sort(allCourses);
-            fileHandler.writeCoursesToCSV(allCourses, currentCSVFile);
-            System.out.println("Data saved successfully to " + currentCSVFile);
+            fileHandler.writeCoursesToCSV(allCourses, CSV_FILE);
+            System.out.println("Data saved successfully to " + CSV_FILE);
 
             System.out.println("\nSave Summary:");
             System.out.println("--------------");
             System.out.println("Student ID: " + currentStudentId);
-            System.out.println("File: " + currentCSVFile);
-            System.out.println("Total courses saved: " + allCourses.size());
-            System.out.println("Courses with grades: " + curriculumManager.getCoursesWithGrades().size());
-            System.out.println("Courses without grades: " + curriculumManager.getCoursesWithoutGrades().size());
+            System.out.println("Course: " + currentCourseTaken);
+            System.out.println("Total records: " + allCourses.size());
+
+            int studentRecords = curriculumManager.getCoursesByStudentId(currentStudentId).size();
+            System.out.println("Your records: " + studentRecords);
+
+            List<Course> graded = curriculumManager.getCoursesWithGrades(currentStudentId, currentCourseTaken);
+            List<Course> ungraded = curriculumManager.getCoursesWithoutGrades(currentStudentId, currentCourseTaken);
+            System.out.println("Courses with grades: " + graded.size());
+            System.out.println("Courses without grades: " + ungraded.size());
 
             System.out.println("\nThank you for using Curriculum Management System!");
         } else {

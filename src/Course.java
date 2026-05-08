@@ -1,17 +1,21 @@
 import java.io.Serializable;
 
 public class Course implements Comparable<Course>, Serializable {
+    private String schoolId;
     private int yearLevel;
     private String course;
-    private String semester; // Now storing the semester directly from CSV
+    private String semester;
     private String courseCode;
     private String courseTitle;
     private double units;
     private String prerequisite;
     private String grade;
+    private String courseTaken;
 
-    public Course(int yearLevel, String course, String semester, String courseCode,
-                  String courseTitle, double units, String prerequisite, String grade) {
+    public Course(String schoolId, int yearLevel, String course, String semester,
+                  String courseCode, String courseTitle, double units,
+                  String prerequisite, String grade, String courseTaken) {
+        this.schoolId = schoolId;
         this.yearLevel = yearLevel;
         this.course = course;
         this.semester = semester;
@@ -20,9 +24,11 @@ public class Course implements Comparable<Course>, Serializable {
         this.units = units;
         this.prerequisite = prerequisite;
         this.grade = grade;
+        this.courseTaken = courseTaken;
     }
 
-    // Getters and Setters
+    // Getters
+    public String getSchoolId() { return schoolId; }
     public int getYearLevel() { return yearLevel; }
     public String getCourse() { return course; }
     public String getSemester() { return semester; }
@@ -31,14 +37,17 @@ public class Course implements Comparable<Course>, Serializable {
     public double getUnits() { return units; }
     public String getPrerequisite() { return prerequisite; }
     public String getGrade() { return grade; }
+    public String getCourseTaken() { return courseTaken; }
 
+    // Setters
     public void setGrade(String grade) { this.grade = grade; }
     public void setCourseTitle(String courseTitle) { this.courseTitle = courseTitle; }
     public void setUnits(double units) { this.units = units; }
     public void setPrerequisite(String prerequisite) { this.prerequisite = prerequisite; }
+    public void setCourseTaken(String courseTaken) { this.courseTaken = courseTaken; }
 
     public String getTermKey() {
-        return yearLevel + "-" + course + "-" + getSemesterOrder();
+        return schoolId + "-" + yearLevel + "-" + courseTaken + "-" + getSemesterOrder();
     }
 
     public int getSemesterOrder() {
@@ -56,6 +65,10 @@ public class Course implements Comparable<Course>, Serializable {
 
     @Override
     public int compareTo(Course other) {
+        int idCompare = this.schoolId.compareTo(other.schoolId);
+        if (idCompare != 0) return idCompare;
+        int courseCompare = this.courseTaken.compareTo(other.courseTaken);
+        if (courseCompare != 0) return courseCompare;
         int yearCompare = Integer.compare(this.yearLevel, other.yearLevel);
         if (yearCompare != 0) return yearCompare;
         int semCompare = Integer.compare(this.getSemesterOrder(), other.getSemesterOrder());

@@ -1,6 +1,5 @@
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class FileHandler<T extends Course> {
 
@@ -13,17 +12,19 @@ public class FileHandler<T extends Course> {
             while ((line = br.readLine()) != null) {
                 String[] fields = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1);
 
-                if (fields.length >= 8) {  // Now expecting 8 fields with the Semester column
+                if (fields.length >= 10) {
                     try {
                         Course course = new Course(
-                                Integer.parseInt(fields[0].trim()),  // YearLevel
-                                fields[1].trim(),                     // Course (BSIT/BSCS)
-                                fields[2].trim(),                     // Semester
-                                fields[3].trim(),                     // CourseCode
-                                fields[4].trim(),                     // CourseTitle
-                                Double.parseDouble(fields[5].trim()), // Units
-                                fields[6].trim().replace("\"", ""),   // Prerequisite
-                                fields[7].trim()                      // Grade
+                                fields[0].trim(),                    // SchoolId
+                                Integer.parseInt(fields[1].trim()),  // YearLevel
+                                fields[2].trim(),                    // Course
+                                fields[3].trim(),                    // Semester
+                                fields[4].trim(),                    // CourseCode
+                                fields[5].trim(),                    // CourseTitle
+                                Double.parseDouble(fields[6].trim()), // Units
+                                fields[7].trim().replace("\"", ""),  // Prerequisite
+                                fields[8].trim(),                    // Grade
+                                fields[9].trim()                     // CourseTaken
                         );
                         courses.add(course);
                     } catch (NumberFormatException e) {
@@ -43,12 +44,13 @@ public class FileHandler<T extends Course> {
 
     public void writeCoursesToCSV(List<Course> courses, String filename) {
         try (PrintWriter pw = new PrintWriter(new FileWriter(filename))) {
-            pw.println("YearLevel,Course,Semester,CourseCode,CourseTitle,Units,Prerequisite,Grade");
+            pw.println("SchoolId,YearLevel,Course,Semester,CourseCode,CourseTitle,Units,Prerequisite,Grade,CourseTaken");
 
-            courses.sort(null); // Uses natural ordering (Comparable)
+            courses.sort(null);
 
             for (Course course : courses) {
-                pw.printf("%d,%s,%s,%s,\"%s\",%.1f,\"%s\",%s%n",
+                pw.printf("%s,%d,%s,%s,%s,\"%s\",%.1f,\"%s\",%s,%s%n",
+                        course.getSchoolId(),
                         course.getYearLevel(),
                         course.getCourse(),
                         course.getSemester(),
@@ -56,7 +58,8 @@ public class FileHandler<T extends Course> {
                         course.getCourseTitle(),
                         course.getUnits(),
                         course.getPrerequisite(),
-                        course.getGrade());
+                        course.getGrade(),
+                        course.getCourseTaken());
             }
 
         } catch (IOException e) {
