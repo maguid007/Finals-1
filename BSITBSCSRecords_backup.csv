@@ -7,8 +7,8 @@ SchoolId,YearLevel,Course,Semester,CourseCode,CourseTitle,Units,Prerequisite,Gra
 2261860,1,BSIT,1st Semester,GART,Art Appreciation,3,,96,BSIT
 2261860,1,BSIT,1st Semester,GSELF,Understanding the Self,3,,94,BSIT
 2261860,1,BSIT,1st Semester,GHIST,Readings in Philippine History,3,,90,BSIT
-2261860,1,BSIT,1st Semester,FIT HW,"Physical Activity Towards Health and Fitness (Health and Wellness)",2,,93,BSIT
-2261860,1,BSIT,1st Semester,CFE 101,"Godâ€™s Journey with His People",3,,90,BSIT
+2261860,1,BSIT,1st Semester,FIT HW,Physical Activity Towards Health and Fitness (Health and Wellness),2,,93,BSIT
+2261860,1,BSIT,1st Semester,CFE 101,Godâ€™s Journey with His People,3,,90,BSIT
 2261860,1,BSIT,2nd Semester,IT 121,Information System Fundamentals,3,IT 111,Not yet taken,BSIT
 2261860,1,BSIT,2nd Semester,IT 122,Computer Programming 2,2,IT 112,Not yet taken,BSIT
 2261860,1,BSIT,2nd Semester,IT 122L,Computer Programming 2 (Lab),1,IT 112,Not yet taken,BSIT
@@ -17,21 +17,21 @@ SchoolId,YearLevel,Course,Semester,CourseCode,CourseTitle,Units,Prerequisite,Gra
 2261860,1,BSIT,2nd Semester,GMATH,Mathematics in the Modern World,3,,Not yet taken,BSIT
 2261860,1,BSIT,2nd Semester,GPCOM,Purposive Communication,3,,Not yet taken,BSIT
 2261860,1,BSIT,2nd Semester,GCWORLD,The Contemporary World,3,,Not yet taken,BSIT
-2261860,1,BSIT,2nd Semester,FIT CS,"Physical Activity Towards Health and Fitness (Combative Sports)",2,,Not yet taken,BSIT
+2261860,1,BSIT,2nd Semester,FIT CS,Physical Activity Towards Health and Fitness (Combative Sports),2,,Not yet taken,BSIT
 2261860,1,BSIT,2nd Semester,CFE 102,Christian Morality in Our Times,3,,Not yet taken,BSIT
 2261860,1,BSIT,Short Term,IT 131,Computer Architecture,2,IT 112,Not yet taken,BSIT
 2261860,1,BSIT,Short Term,IT 131L,Computer Architecture (Lab),1,IT 112,Not yet taken,BSIT
 2261860,1,BSIT,Short Term,GRIZAL,The Life and Works of Rizal,3,,Not yet taken,BSIT
-2266018,1,BSCS,1st Semester,CS 111,Introduction to Computing,2,,Not yet taken,BSCS
-2266018,1,BSCS,1st Semester,CS 111L,Introduction to Computing (Lab),1,,Not yet taken,BSCS
-2266018,1,BSCS,1st Semester,CS 112,Computer Programming 1,2,,Not yet taken,BSCS
-2266018,1,BSCS,1st Semester,CS 112L,Computer Programming 1 (Lab),1,,Not yet taken,BSCS
-2266018,1,BSCS,1st Semester,CS 113,Discrete Structures,3,,Not yet taken,BSCS
-2266018,1,BSCS,1st Semester,GMAT,Mathematics in the Modern World,3,,Not yet taken,BSCS
-2266018,1,BSCS,1st Semester,GART,Art Appreciation,3,,Not yet taken,BSCS
-2266018,1,BSCS,1st Semester,GHIST,Readings in Philippine History,3,,Not yet taken,BSCS
-2266018,1,BSCS,1st Semester,FIT HW,Physical Activity Towards Health and Fitness,2,,Not yet taken,BSCS
-2266018,1,BSCS,1st Semester,CFE 101,"God's Journey with His People",3,,Not yet taken,BSCS
+2266018,1,BSCS,1st Semester,CS 111,Introduction to Computing,2,,85,BSCS
+2266018,1,BSCS,1st Semester,CS 111L,Introduction to Computing (Lab),1,,85,BSCS
+2266018,1,BSCS,1st Semester,CS 112,Computer Programming 1,2,,87,BSCS
+2266018,1,BSCS,1st Semester,CS 112L,Computer Programming 1 (Lab),1,,87,BSCS
+2266018,1,BSCS,1st Semester,CS 113,Discrete Structures,3,,80,BSCS
+2266018,1,BSCS,1st Semester,GMAT,Mathematics in the Modern World,3,,89,BSCS
+2266018,1,BSCS,1st Semester,GART,Art Appreciation,3,,90,BSCS
+2266018,1,BSCS,1st Semester,GHIST,Readings in Philippine History,3,,94,BSCS
+2266018,1,BSCS,1st Semester,FIT HW,Physical Activity Towards Health and Fitness,2,,90,BSCS
+2266018,1,BSCS,1st Semester,CFE 101,God's Journey with His People,3,,95,BSCS
 2266018,1,BSCS,2nd Semester,CS 121,Digital Logic Design,3,CS 111,Not yet taken,BSCS
 2266018,1,BSCS,2nd Semester,CS 122,Computer Programming 2,2,CS 112,Not yet taken,BSCS
 2266018,1,BSCS,2nd Semester,CS 122L,Computer Programming 2 (Lab),1,CS 112,Not yet taken,BSCS
@@ -40,7 +40,7 @@ SchoolId,YearLevel,Course,Semester,CourseCode,CourseTitle,Units,Prerequisite,Gra
 2266018,1,BSCS,2nd Semester,GSELF,Understanding the Self,3,,Not yet taken,BSCS
 2266018,1,BSCS,2nd Semester,GPCOM,Purposive Communication,3,,Not yet taken,BSCS
 2266018,1,BSCS,2nd Semester,GENVI,Environmental Science,3,,Not yet taken,BSCS
-2266018,1,BSCS,2nd Semester,FIT CS,"Physical Activity Towards Health and Fitness (Combative Sports)",2,,Not yet taken,BSCS
+2266018,1,BSCS,2nd Semester,FIT CS,Physical Activity Towards Health and Fitness (Combative Sports),2,,Not yet taken,BSCS
 2266018,1,BSCS,2nd Semester,CFE 102,Christian Morality in Our Times,3,,Not yet taken,BSCS
 2266018,1,BSCS,Short Term,CS 131,Software Modeling and Analysis,3,CS 111,Not yet taken,BSCS
 2266018,1,BSCS,Short Term,CS 132,Mathematics for Computer Science,3,,Not yet taken,BSCS
@@ -53,7 +53,7 @@ SchoolId,YearLevel,Course,Semester,CourseCode,CourseTitle,Units,Prerequisite,Gra
 2261860,2,BSIT,1st Semester,GENTREP,The Entrepreneurial Mind,3,,Not yet taken,BSIT
 2261860,2,BSIT,1st Semester,GRVA,Reading Visual Art,3,,Not yet taken,BSIT
 2261860,2,BSIT,1st Semester,NSTP-CWTS 1,Foundations of Service,3,,Not yet taken,BSIT
-2261860,2,BSIT,1st Semester,FIT OA,"Physical Activity Towards Health and Fitness (Outdoor and Adventure Activities)",2,,Not yet taken,BSIT
+2261860,2,BSIT,1st Semester,FIT OA,Physical Activity Towards Health and Fitness (Outdoor and Adventure Activities),2,,Not yet taken,BSIT
 2261860,2,BSIT,1st Semester,CFE 103,Catholic Foundation of Mission,3,,Not yet taken,BSIT
 2261860,2,BSIT,2nd Semester,IT 221,Information Management,2,IT 212,Not yet taken,BSIT
 2261860,2,BSIT,2nd Semester,IT 221L,Information Management (Lab),1,IT 212,Not yet taken,BSIT
@@ -62,7 +62,7 @@ SchoolId,YearLevel,Course,Semester,CourseCode,CourseTitle,Units,Prerequisite,Gra
 2261860,2,BSIT,2nd Semester,IT 223,Human Computer Interaction,3,IT 122,Not yet taken,BSIT
 2261860,2,BSIT,2nd Semester,GENVI,Environmental Science,3,,Not yet taken,BSIT
 2261860,2,BSIT,2nd Semester,NSTP-CWTS 2,Social Awareness and Empowerment for Service,3,NSTP-CWTS 1,Not yet taken,BSIT
-2261860,2,BSIT,2nd Semester,FIT AQ,"Physical Activity Towards Health and Fitness (Aquatics)",2,,Not yet taken,BSIT
+2261860,2,BSIT,2nd Semester,FIT AQ,Physical Activity Towards Health and Fitness (Aquatics),2,,Not yet taken,BSIT
 2261860,2,BSIT,2nd Semester,CFE 104,CICM Missionary Identity,3,CFE 103,Not yet taken,BSIT
 2261860,2,BSIT,Short Term,CS 314,Social and Personal Development in the ICT Workplace,3,"CS 111, GSELF",Not yet taken,BSIT
 2261860,2,BSIT,Short Term,CS 315,Technology-Assisted Presentation and Presentation,3,"CS 111, GPCOM",Not yet taken,BSIT
@@ -75,7 +75,7 @@ SchoolId,YearLevel,Course,Semester,CourseCode,CourseTitle,Units,Prerequisite,Gra
 2266018,2,BSCS,1st Semester,GSTS,Science Technology and Society,3,,Not yet taken,BSCS
 2266018,2,BSCS,1st Semester,GRVA,Reading Visual Art,3,,Not yet taken,BSCS
 2266018,2,BSCS,1st Semester,NSTP-CWTS 1,Foundations of Service,3,,Not yet taken,BSCS
-2266018,2,BSCS,1st Semester,FIT OA,"Physical Activity Towards Health and Fitness (Outdoor and Adventure Activities)",2,,Not yet taken,BSCS
+2266018,2,BSCS,1st Semester,FIT OA,Physical Activity Towards Health and Fitness (Outdoor and Adventure Activities),2,,Not yet taken,BSCS
 2266018,2,BSCS,1st Semester,CFE 103,Catholic Foundation of Mission,3,,Not yet taken,BSCS
 2266018,2,BSCS,2nd Semester,CS 221,Information Management,2,CS 211,Not yet taken,BSCS
 2266018,2,BSCS,2nd Semester,CS 221L,Information Management (Lab),1,CS 211,Not yet taken,BSCS
@@ -85,7 +85,7 @@ SchoolId,YearLevel,Course,Semester,CourseCode,CourseTitle,Units,Prerequisite,Gra
 2266018,2,BSCS,2nd Semester,GETHICS,Ethics,3,,Not yet taken,BSCS
 2266018,2,BSCS,2nd Semester,GCWORLD,The Contemporary World,3,,Not yet taken,BSCS
 2266018,2,BSCS,2nd Semester,NSTP-CWTS 2,Social Awareness and Empowerment for Service,3,NSTP-CWTS 1,Not yet taken,BSCS
-2266018,2,BSCS,2nd Semester,FIT AQ,"Physical Activity Towards Health and Fitness (Aquatics)",2,,Not yet taken,BSCS
+2266018,2,BSCS,2nd Semester,FIT AQ,Physical Activity Towards Health and Fitness (Aquatics),2,,Not yet taken,BSCS
 2266018,2,BSCS,2nd Semester,CFE 104,CICM Missionary Identity,3,CFE 103,Not yet taken,BSCS
 2266018,2,BSCS,Short Term,CS 231,Computer Networks,2,CS 212,Not yet taken,BSCS
 2266018,2,BSCS,Short Term,CS 231L,Computer Networks (Lab),1,CS 212,Not yet taken,BSCS
@@ -108,7 +108,7 @@ SchoolId,YearLevel,Course,Semester,CourseCode,CourseTitle,Units,Prerequisite,Gra
 2261860,3,BSIT,2nd Semester,IT 324,System Integration and Architecture,3,"IT 211, IT 222",Not yet taken,BSIT
 2261860,3,BSIT,2nd Semester,IT 325,Field Trips and Seminars,3,3rd year standing,Not yet taken,BSIT
 2261860,3,BSIT,2nd Semester,ITE,Elective 2,3,3rd year standing,Not yet taken,BSIT
-2261860,3,BSIT,2nd Semester,CFE 105B,"CICM in Action: Environmental Planning and Management and Disaster Risk Reduction Management",1.5,CFE 105A,Not yet taken,BSIT
+2261860,3,BSIT,2nd Semester,CFE 105B,CICM in Action: Environmental Planning and Management and Disaster Risk Reduction Management,1.5,CFE 105A,Not yet taken,BSIT
 2261860,3,BSIT,Short Term,IT 331,Information Assurance and Security,3,core courses,Not yet taken,BSIT
 2261860,3,BSIT,Short Term,ITE,Elective 3,3,3rd year standing,Not yet taken,BSIT
 2266018,3,BSCS,1st Semester,CS 311,Applications Development,2,CS 122,Not yet taken,BSCS
@@ -127,7 +127,7 @@ SchoolId,YearLevel,Course,Semester,CourseCode,CourseTitle,Units,Prerequisite,Gra
 2266018,3,BSCS,2nd Semester,CS 323L,Modeling and Simulation (Lab),1,"CS 132, CS 211",Not yet taken,BSCS
 2266018,3,BSCS,2nd Semester,CS 324,Methods of Research in Computer Science,3,3rd year standing,Not yet taken,BSCS
 2266018,3,BSCS,2nd Semester,CS 325,Structure of Programming Languages,3,CS 211,Not yet taken,BSCS
-2266018,3,BSCS,2nd Semester,CFE 105B,"CICM in Action: Environmental Planning and Management and Disaster Risk Reduction Management",1.5,CFE 105A,Not yet taken,BSCS
+2266018,3,BSCS,2nd Semester,CFE 105B,CICM in Action: Environmental Planning and Management and Disaster Risk Reduction Management,1.5,CFE 105A,Not yet taken,BSCS
 2266018,3,BSCS,Short Term,CS 331,Practicum,6,4th year standing,Not yet taken,BSCS
 2261860,4,BSIT,1st Semester,IT 411,IT Project 2,3,IT 321,Not yet taken,BSIT
 2261860,4,BSIT,1st Semester,IT 412,IT Resource Management,3,"IT 313, IT 324",Not yet taken,BSIT

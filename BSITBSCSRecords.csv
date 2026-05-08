@@ -8,7 +8,7 @@ SchoolId,YearLevel,Course,Semester,CourseCode,CourseTitle,Units,Prerequisite,Gra
 2261860,1,BSIT,1st Semester,GSELF,Understanding the Self,3,,94,BSIT
 2261860,1,BSIT,1st Semester,GHIST,Readings in Philippine History,3,,90,BSIT
 2261860,1,BSIT,1st Semester,FIT HW,Physical Activity Towards Health and Fitness (Health and Wellness),2,,93,BSIT
-2261860,1,BSIT,1st Semester,CFE 101,Godâ€™s Journey with His People,3,,90,BSIT
+2261860,1,BSIT,1st Semester,CFE 101,God's Journey with His People,3,,90,BSIT
 2261860,1,BSIT,2nd Semester,IT 121,Information System Fundamentals,3,IT 111,Not yet taken,BSIT
 2261860,1,BSIT,2nd Semester,IT 122,Computer Programming 2,2,IT 112,Not yet taken,BSIT
 2261860,1,BSIT,2nd Semester,IT 122L,Computer Programming 2 (Lab),1,IT 112,Not yet taken,BSIT
